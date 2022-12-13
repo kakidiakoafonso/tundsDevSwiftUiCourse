@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct PurchaseStateView: View {
+    @EnvironmentObject var mv: PurchaseViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Image(systemName:mv.hasPurchase ? "lock.open":"lock")
+                .font(.system(size: 150,weight: .bold))
+                .symbolVariant(.fill)
+            Text("O usuario \(mv.hasPurchase ? "e":"nao e") premium")
+        }
     }
 }
 
 struct PurchaseStateView_Previews: PreviewProvider {
     static var previews: some View {
         PurchaseStateView()
+            .environmentObject(PurchaseViewModel())
     }
 }

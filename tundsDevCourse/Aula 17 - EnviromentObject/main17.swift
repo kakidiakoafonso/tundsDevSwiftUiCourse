@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct main17: View {
+    @StateObject var purchaseModel = PurchaseViewModel()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TabView{
+            Purchase()
+                .tabItem{
+                    Image(systemName: "creditcard")
+                        .font(.system(size: 50))
+                }
+            PurchaseStateView()
+                .tabItem{
+                    Image(systemName: "gear")
+                        .font(.system(size: 50))
+                }
+        }
+        .environmentObject(purchaseModel)
     }
 }
 

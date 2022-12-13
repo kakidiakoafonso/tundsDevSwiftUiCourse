@@ -8,13 +8,25 @@
 import SwiftUI
 
 struct Purchase: View {
+    @EnvironmentObject var mv: PurchaseViewModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            if(mv.isLoading)
+            {
+                ProgressView()
+            }
+            Button{
+                mv.purchase()
+            } label: {
+                Text("Purchase me")
+            }
+        }
     }
 }
 
 struct Purchase_Previews: PreviewProvider {
     static var previews: some View {
         Purchase()
+            .environmentObject(PurchaseViewModel())
     }
 }
